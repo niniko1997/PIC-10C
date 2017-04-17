@@ -1,4 +1,4 @@
-Project #1
+# Project #1
 
 The assignment is to write a single-player version of the card game known as 'siete y medio' (seven and a half).
 The goal of the game is to get cards whose total value comes the closest to 7.5 without going over it. Getting a card total over 7.5 is called "busting". 
