@@ -5,9 +5,9 @@ The goal of the game is to get cards whose total value comes the closest to 7.5 
 
 When a player makes a bet against the dealer. There are 4 possible outcomes:
 
-The player comes closer to 71/2 than the dealer or the dealer busts but the player did not bust. 
+The player comes closer to 7.5 than the dealer or the dealer busts but the player did not bust. 
 In this case the player wins the round and the player's money increases by the amount that was bet.
-The dealer comes closer to 71/2 than the player, or the player busts.
+The dealer comes closer to 7.5 than the player, or the player busts.
 In this case the player loses the round and the player's money decreases by the amount that was bet.
 Both, the player and dealer bust.
 In this case the player loses the round and the player's money decreases by the amount that was bet. 
