@@ -31,9 +31,4 @@ int main(){
 	double board[NUM_OF_RANKS];
 	createBoard(board);
 
-	for(int i=0; i< NUM_OF_RANKS; i++){
-			std::cout << board[i] <<" ";
-	}// end for loop
-
-
 }// end main
