@@ -1,1 +1,1 @@
-"# PIC-10C: Projects" 
+#PIC-10C: Projects
