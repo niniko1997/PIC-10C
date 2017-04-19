@@ -34,6 +34,10 @@ class Card {
       // The possible returns are: 1, 2, 3, 4, 5, 6, 7, 10, 11 and 12
       int get_rank() const;
 
+      // Returns the value of the corresponding rank
+      // The possible returns are 1, 2, 3, 4, 5, 6, 7, 0.5, 0.5, 0.5
+      double get_value(rank_t r) const;
+
       // Compare rank of two cards. E.g: Eight<Jack is true.
       // Assume Ace is always 1. 
       bool operator < (Card card2) const;
@@ -49,8 +53,10 @@ class Hand {
       // A vector of Cards
       Hand();
 
-      // You decide what functions you'll need...
-
+      // Returns the value of the current hand
+      // Adds up the values on the cards in the hand
+      double handNumer() const;
+      
    private:
       std::vector<Card> hand; //stores the hand of cards that have been pulled from the deck
       int hand_size; //stores the size of the vector
