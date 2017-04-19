@@ -15,11 +15,8 @@
 
 enum suit_t {OROS, COPAS, ESPADAS, BASTOS};
 
-   /* The values for this type start at 0 and increase by one 
-   afterwards until they get to SIETE. 
-   The rank reported by the function Card::get_rank() below is 
-   the value listed here plus one.
-   */
+//The values for this type start at 0 and increase by one afterwards until they get to SIETE. 
+//The rank reported by the function Card::get_rank() below is the value listed here plus one.
 enum rank_t {AS, DOS, TRES, CUATRO, CINCO, SEIS, SIETE, SOTA=9, CABALLO=10, REY=11};
 
 class Card {
@@ -28,10 +25,10 @@ class Card {
       Card();
       
       // Accessors 
-      string get_spanish_suit() const;
-      string get_spanish_rank() const; 
-      string get_english_suit() const;
-      string get_english_rank() const; 
+      std::string get_spanish_suit() const;
+      std::string get_spanish_rank() const; 
+      std::string get_english_suit() const;
+      std::string get_english_rank() const; 
 
       // Converts card rank to number.
       // The possible returns are: 1, 2, 3, 4, 5, 6, 7, 10, 11 and 12
@@ -41,7 +38,7 @@ class Card {
       // Assume Ace is always 1. 
       bool operator < (Card card2) const;
 
-private:
+   private:
       suit_t suit;
       rank_t rank;
 };
@@ -55,7 +52,8 @@ class Hand {
       // You decide what functions you'll need...
 
    private:
-      // You decide what fields you'll need...
+      std::vector<Card> hand; //stores the hand of cards that have been pulled from the deck
+      int hand_size; //stores the size of the vector
 };
 
 

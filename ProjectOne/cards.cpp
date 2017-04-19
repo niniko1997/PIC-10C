@@ -1,17 +1,12 @@
 #include "cards.h"
 #include <cstdlib>
 #include <iostream>
-
-/* 
-You might or might not need these two extra libraries 
 #include <iomanip>
-#include <algorithm>
-*/
+#include <algorithm>*/
 
 
-/* *************************************************
-   Card class
-   ************************************************* */
+// *************************************************
+// CARDS CLASS
 
 /* 
    Default constructor for the Card class.
@@ -22,10 +17,14 @@ You might or might not need these two extra libraries
 Card::Card(){
    int r = 1 + rand() % 4;
    switch (r) {
-      case 1: suit = OROS; break;
-      case 2: suit = COPAS; break; 
-      case 3: suit = ESPADAS; break;
-      case 4: suit = BASTOS; break; 
+      case 1: suit = OROS;
+         break;
+      case 2: suit = COPAS; 
+         break; 
+      case 3: suit = ESPADAS; 
+         break;
+      case 4: suit = BASTOS; 
+         break; 
       default: break;
    }
 
@@ -46,8 +45,8 @@ Card::Card(){
 }
 
 // Accessor: returns a string with the suit of the card in Spanish 
-string Card::get_spanish_suit() const { 
-   string suitName;
+std::string Card::get_spanish_suit() const { 
+   std::string suitName;
    switch (suit) {
       case OROS: 
          suitName = "oros"; 
@@ -63,12 +62,13 @@ string Card::get_spanish_suit() const {
 	 break; 
       default: break;
    }
+
    return suitName;
 }
 
 // Accessor: returns a string with the rank of the card in Spanish 
-string Card::get_spanish_rank() const { 
-   string rankName;
+std::string Card::get_spanish_rank() const { 
+   std::string rankName;
    switch (rank) {
       case AS:
          rankName = "As"; 
@@ -102,21 +102,70 @@ string Card::get_spanish_rank() const {
 	 break; 
       default: break;
    }
+
    return rankName;
 }
 
-
-
 // Accessor: returns a string with the suit of the card in English 
-// This is just a stub! Modify it to your liking.
-string Card::get_english_suit() const { 
-   return "";
+std::string Card::get_english_suit() const { 
+    std::string suitName;
+      switch (suit) {
+      case OROS: 
+         suitName = "golds"; 
+       break;
+      case COPAS: 
+         suitName = "cups"; 
+       break; 
+      case ESPADAS: 
+         suitName = "swords"; 
+      break;
+      case BASTOS: 
+         suitName = "clubs"; 
+      break; 
+      default: break;
+   }
+
+   return suitName;
 }
 
 // Accessor: returns a string with the rank of the card in English 
-// This is just a stub! Modify it to your liking.
-string Card::get_english_rank() const { 
-   return "";
+std::string Card::get_english_rank() const { 
+   std::string rankName;
+   switch (rank) {
+      case AS:
+         rankName = "Ace"; 
+    break; 
+      case DOS: 
+         rankName = "Two"; 
+    break; 
+      case TRES: 
+         rankName = "Three"; 
+    break; 
+      case CUATRO: 
+         rankName = "Four"; 
+    break; 
+      case CINCO: 
+         rankName = "Five"; 
+    break; 
+      case SEIS: 
+         rankName = "Six"; 
+    break; 
+      case SIETE: 
+         rankName = "Seven"; 
+    break; 
+      case SOTA: 
+         rankName = "Jack"; 
+    break; 
+      case CABALLO: 
+         rankName = "Knight"; 
+    break; 
+      case REY: 
+         rankName = "King"; 
+    break; 
+      default: break;
+   }
+
+   return rankName;
 }
 
 
@@ -135,12 +184,21 @@ bool Card::operator < (Card card2) const {
 
 
 
-/* *************************************************
-   Hand class
-   ************************************************* */
-// Implemente the member functions of the Hand class here.
+// *************************************************
+// HAND CLASS
 
+// Default Constructor constructs an empty hand
+Hand::Hand()
+:hand_size(0){
 
+}
+
+Hand::Hand(Card c)
+:hand_size(1){
+   hand.pushback(c);
+   hand_size++;
+
+}
 
 /* *************************************************
    Player class
