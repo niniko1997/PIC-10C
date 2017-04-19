@@ -176,83 +176,82 @@ int Card::get_rank() const {
    return static_cast<int>(rank) + 1 ;
 }
 
-// Returns the value of the corresponding rank
-// The possible returns are 1, 2, 3, 4, 5, 6, 7, 0.5, 0.5, 0.5
-double Card::get_value() const{
-   int r= this.get_rank();
-   double value = 0;
+   // Returns the value of the corresponding rank
+   // The possible returns are 1, 2, 3, 4, 5, 6, 7, 0.5, 0.5, 0.5
+   double Card::get_value() const{
+      int r= this.get_rank();
+      double value = 0;
 
-   switch(r){
-      case 1:
-         value = 1; 
-    break; 
-      case 2: 
-         value = 2; 
-    break; 
-      case 3: 
-         value =3; 
-    break; 
-      case 4: 
-         value = 4; 
-    break; 
-      case 5: 
-         value =5; 
-    break; 
-      case 6: 
-         value = 6; 
-    break; 
-      case 7: 
-         value = 7; 
-    break; 
-      case 10: 
-         value = 0.5; 
-    break; 
-      case 11: 
-         value = 0.5; 
-    break; 
-      case 12: 
+      switch(r){
+         case 1:
+            value = 1; 
+      break; 
+         case 2: 
+            value = 2; 
+      break; 
+         case 3: 
+            value =3; 
+      break; 
+         case 4: 
+            value = 4; 
+      break; 
+         case 5: 
+            value =5; 
+      break; 
+         case 6: 
+            value = 6; 
+      break; 
+         case 7: 
+            value = 7; 
+      break; 
+         case 10: 
+            value = 0.5; 
+      break; 
+         case 11: 
+            value = 0.5; 
+      break; 
+         case 12: 
          value = 05; 
-    break; 
-      default: break;
-   }// end swith 
+       break; 
+         default: break;
+      }// end swith 
 
-   return value;
-}
+      return value;
+   }
 
-// Comparison operator for cards
-// Returns TRUE if card1 < card2
-bool Card::operator < (Card card2) const {
-   return rank < card2.rank;
-}
+   // Comparison operator for cards
+   // Returns TRUE if card1 < card2
+   bool Card::operator < (Card card2) const {
+      return rank < card2.rank;
+   }
 
 
 
 // *************************************************
 // HAND CLASS
 
-// Default Constructor constructs an empty hand
-Hand::Hand()
-:hand_size(0){
+   // Default Constructor constructs an empty hand
+   Hand::Hand()
+      :hand_size(0){
 
-}
+   }
 
-Hand::Hand(Card c)
-:hand_size(1){
-   hand.pushback(c);
-   hand_size++;
-}
+   Hand::Hand(Card c)
+      :hand_size(1){
+         hand.pushback(c);
+         hand_size++;
+      }
 
-// Returns the value of the current hand
-// Adds up the values on the cards in the hand
-double Hand::handNumber(){
-   double sum=0;
+   // Returns the value of the current hand
+   // Adds up the values on the cards in the hand
+   double Hand::handNumber(){
+      double sum=0;
 
-   for(int i=0; i<hand_size; i++){
-      sum = sum+hand[i].get_value();
-   }// end for
-
+      for(int i=0; i<hand_size; i++){
+         sum = sum+hand[i].get_value();
+      }// end for
    return sum;
-}
+   }
 
 /* *************************************************
    Player class
