@@ -252,6 +252,12 @@ int Card::get_rank() const {
    return sum;
    }
 
+   // adds card to the hand
+   void Hand::add_card(Card c){
+      hand.push_back(c);
+      hand_size++;
+   }
+
 // *************************************************
 // PLAYER CLASS
 
@@ -273,7 +279,12 @@ int Card::get_rank() const {
       money = money+m;
    }
 
-      // decreases money by given parameter
+   // decreases money by given parameter
    void Player::decrease_money(int m){
       money = money + m;
+   }
+
+   // adds card to the hand
+   void Player::add_card(Card c){
+      hand.add_card(c);
    }

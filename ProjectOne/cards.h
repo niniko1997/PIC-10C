@@ -56,6 +56,9 @@ class Hand {
       // Returns the value of the current hand
       // Adds up the values on the cards in the hand
       double handNumber() const;
+
+      // adds card to the hand
+      void add_card(Card* c);
    private:
       std::vector<Card> hand; //stores the hand of cards that have been pulled from the deck
       int hand_size; //stores the size of the vector
@@ -80,10 +83,12 @@ class Player {
 
       // decreases money by given parameter
       void decrease_money(int m);
+
+      // adds a card to the player's hand
+      void add_card(Card* c);
    private:
       int money;
       Hand hand;
 };
 
 #endif 
-
