@@ -2,7 +2,6 @@
 
 /* *************************************
   Nino Migineishvili, April 16th, 2017
-
    Interface of Card Class
    ************************************* */
 
@@ -52,11 +51,11 @@ class Hand {
    public:
       // A vector of Cards
       Hand();
+      Hand(Card c);
 
       // Returns the value of the current hand
       // Adds up the values on the cards in the hand
-      double handNumer() const;
-
+      double handNumber() const;
    private:
       std::vector<Card> hand; //stores the hand of cards that have been pulled from the deck
       int hand_size; //stores the size of the vector
@@ -81,3 +80,4 @@ class Player {
 };
 
 #endif 
+
