@@ -226,8 +226,6 @@ int Card::get_rank() const {
       return rank < card2.rank;
    }
 
-
-
 // *************************************************
 // HAND CLASS
 
@@ -258,12 +256,24 @@ int Card::get_rank() const {
 // PLAYER CLASS
 
    Player::Player()
-      :money(0){
-         hand = new Hand(0);
+      :money(0), hand(){
    }// end default construcor
 
    Player::Player(int m)
-      :money(m){
-         hand = new Hand(0);
+      :money(m), hand(){
    }// end constructor
 
+   // returns player's current money
+   int Player::get_money() const{
+      return money;
+   }
+
+    // increases money by given parameter
+   void Player::increase_money(int m){
+      money = money+m;
+   }
+
+      // decreases money by given parameter
+   void Player::decrease_money(int m){
+      money = money + m;
+   }

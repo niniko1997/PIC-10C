@@ -22,5 +22,7 @@ int main(){
 	Player Dealer(MAX_DEALER_LOSS);
 	Player firstPlayer(PLAYER_MONEY);
 
-	
+	do{
+
+	}while();
 }// end main

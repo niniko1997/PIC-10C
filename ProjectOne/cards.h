@@ -35,7 +35,7 @@ class Card {
 
       // Returns the value of the corresponding rank
       // The possible returns are 1, 2, 3, 4, 5, 6, 7, 0.5, 0.5, 0.5
-      double get_value(rank_t r) const;
+      double get_value() const;
 
       // Compare rank of two cards. E.g: Eight<Jack is true.
       // Assume Ace is always 1. 
@@ -74,6 +74,12 @@ class Player {
 
       // gets the current amount of money
       int get_money() const;
+
+      // increases money by given parameter
+      void increase_money(int m);
+
+      // decreases money by given parameter
+      void decrease_money(int m);
    private:
       int money;
       Hand hand;
