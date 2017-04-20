@@ -34,6 +34,8 @@ int main(){
 	   		do{
 	   		    Dealer.add_card(new Card());
 	   		    firstPlayer.add_card(new Card());
+
+	   		    cout << "Your card is " << firstPlayer.getCurrentCard();
 	   		}while(false);
 	   }
 	   else{

@@ -1,6 +1,8 @@
 #include "cards.h"
 #include <algorithm>*/
 
+
+
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
@@ -51,16 +53,16 @@ std::string Card::get_spanish_suit() const {
    switch (suit) {
       case OROS: 
          suitName = "oros"; 
-	 break;
+    break;
       case COPAS: 
          suitName = "copas"; 
-	 break; 
+    break; 
       case ESPADAS: 
          suitName = "espadas"; 
-	 break;
+    break;
       case BASTOS: 
          suitName = "bastos"; 
-	 break; 
+    break; 
       default: break;
    }
 
@@ -73,34 +75,34 @@ std::string Card::get_spanish_rank() const {
    switch (rank) {
       case AS:
          rankName = "As"; 
-	 break; 
+    break; 
       case DOS: 
          rankName = "Dos"; 
-	 break; 
+    break; 
       case TRES: 
          rankName = "Tres"; 
-	 break; 
+    break; 
       case CUATRO: 
          rankName = "Cuatro"; 
-	 break; 
+    break; 
       case CINCO: 
          rankName = "Cinco"; 
-	 break; 
+    break; 
       case SEIS: 
          rankName = "Seis"; 
-	 break; 
+    break; 
       case SIETE: 
          rankName = "Siete"; 
-	 break; 
+    break; 
       case SOTA: 
          rankName = "Sota"; 
-	 break; 
+    break; 
       case CABALLO: 
          rankName = "Caballo"; 
-	 break; 
+    break; 
       case REY: 
          rankName = "Rey"; 
-	 break; 
+    break; 
       default: break;
    }
 
@@ -253,11 +255,21 @@ int Card::get_rank() const {
    }
 
    // adds card to the hand
-   void Hand::add_card(Card c){
-      hand.push_back(c);
+   void Hand::add_card(Card* c){
+      hand.push_back(*c);
       hand_size++;
    }
 
+   int Hand::get_hand_size() const{
+      return hand_size;
+   }
+
+   //return card at given index
+   Card Hand::get_card_at_index(int i) const{
+      if(i< hand_size && i>0)
+         return hand[i];
+      return NULL;
+   }
 // *************************************************
 // PLAYER CLASS
 
@@ -285,6 +297,19 @@ int Card::get_rank() const {
    }
 
    // adds card to the hand
-   void Player::add_card(Card c){
+   void Player::add_card(Card* c){
       hand.add_card(c);
+   }
+
+   std::string Player::getCurrentCard(){
+      int current_hand_size = hand.get_hand_size();
+      if(current_hand_size>0){
+         Card c = hand.get_card_at_index(current_hand_size-1);
+         std::string suit = c.get_spanish_suit();
+         std::string rank = c.get_spanish_rank();
+
+         return "Suit: " + suit + " Rank: " + rank;
+      }
+
+      return "";
    }
