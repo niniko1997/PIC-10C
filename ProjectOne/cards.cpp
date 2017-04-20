@@ -253,7 +253,15 @@ int Card::get_rank() const {
    return sum;
    }
 
-/* *************************************************
-   Player class
-   ************************************************* */
-// Implemente the member functions of the Player class here.
+// *************************************************
+// PLAYER CLASS
+
+   Player::Player()
+      :money(0){
+         hand = new Hand(0);
+   }// end default construcor
+
+   Player::Player(int m)
+      :money(m){
+         hand = new Hand(0);
+   }// end constructor

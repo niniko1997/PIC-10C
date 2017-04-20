@@ -19,5 +19,8 @@ const int NUM_OF_RANKS = 10;
 const int NUM_OF_SUITS = 4;
 
 int main(){
+	Player Dealer(MAX_DEALER_LOSS);
+	Player firstPlayer(PLAYER_MONEY);
+
 	
 }// end main

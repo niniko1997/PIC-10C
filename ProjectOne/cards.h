@@ -56,7 +56,7 @@ class Hand {
       // Returns the value of the current hand
       // Adds up the values on the cards in the hand
       double handNumer() const;
-      
+
    private:
       std::vector<Card> hand; //stores the hand of cards that have been pulled from the deck
       int hand_size; //stores the size of the vector
@@ -65,15 +65,19 @@ class Hand {
 
 class Player {
    public:
+      // Default constructor 
+      // Set amount of money to zero
+      Player();
+
       // Constructor. 
-      //    Assigns initial amount of money
+      // Assigns initial amount of money
       Player(int m);
 
-      // You decide what functions you'll need...
-
+      // gets the current amount of money
+      int get_money() const;
    private:
       int money;
-      // You decide what extra fields (if any) you'll need...
+      Hand hand;
 };
 
 #endif 
