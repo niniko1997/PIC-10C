@@ -1,8 +1,9 @@
 #include "cards.h"
+#include <algorithm>*/
+
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
-#include <algorithm>*/
 
 
 // *************************************************
@@ -179,7 +180,7 @@ int Card::get_rank() const {
    // Returns the value of the corresponding rank
    // The possible returns are 1, 2, 3, 4, 5, 6, 7, 0.5, 0.5, 0.5
    double Card::get_value() const{
-      int r= this.get_rank();
+      int r= this->get_rank();
       double value = 0;
 
       switch(r){
@@ -238,13 +239,13 @@ int Card::get_rank() const {
 
    Hand::Hand(Card c)
       :hand_size(1){
-         hand.pushback(c);
+         hand.push_back(c);
          hand_size++;
       }
 
    // Returns the value of the current hand
    // Adds up the values on the cards in the hand
-   double Hand::handNumber(){
+   double Hand::handNumber() const{
       double sum=0;
 
       for(int i=0; i<hand_size; i++){
@@ -257,3 +258,4 @@ int Card::get_rank() const {
    Player class
    ************************************************* */
 // Implemente the member functions of the Player class here.
+
