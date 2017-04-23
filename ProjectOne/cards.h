@@ -63,10 +63,10 @@ class Hand {
       // get hand size
       int get_hand_size() const;
 
-      // get card at the given index
-      Card get_card_at_index(int i) const;
+      // gets a card reference for the given index
+      Card* get_card_at_index(int i) const;
    private:
-      std::vector<Card> hand; //stores the hand of cards that have been pulled from the deck
+      std::vector<Card*> hand; //stores the hand of cards that have been pulled from the deck
       int hand_size; //stores the size of the vector
 };
 
@@ -94,6 +94,9 @@ class Player {
       void add_card(Card* c);
 
       std::string getCurrentCard();
+
+      // gets the value of the currect hand;
+      double get_hand_value() const;
    private:
       int money;
       Hand hand;

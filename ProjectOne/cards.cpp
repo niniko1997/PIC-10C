@@ -1,7 +1,5 @@
 #include "cards.h"
-#include <algorithm>*/
-
-
+#include <algorithm>
 
 #include <cstdlib>
 #include <iostream>
@@ -239,7 +237,7 @@ int Card::get_rank() const {
 
    Hand::Hand(Card c)
       :hand_size(1){
-         hand.push_back(c);
+         hand.push_back(new Card(c));
          hand_size++;
       }
 
@@ -249,14 +247,14 @@ int Card::get_rank() const {
       double sum=0;
 
       for(int i=0; i<hand_size; i++){
-         sum = sum+hand[i].get_value();
+         sum = sum+hand[i]->get_value();
       }// end for
    return sum;
    }
 
    // adds card to the hand
    void Hand::add_card(Card* c){
-      hand.push_back(*c);
+      hand.push_back(c);
       hand_size++;
    }
 
@@ -265,9 +263,10 @@ int Card::get_rank() const {
    }
 
    //return card at given index
-   Card Hand::get_card_at_index(int i) const{
+   Card* Hand::get_card_at_index(int i) const{
       if(i< hand_size && i>0)
          return hand[i];
+
       return NULL;
    }
 // *************************************************
@@ -304,7 +303,7 @@ int Card::get_rank() const {
    std::string Player::getCurrentCard(){
       int current_hand_size = hand.get_hand_size();
       if(current_hand_size>0){
-         Card c = hand.get_card_at_index(current_hand_size-1);
+         Card c = *(hand.get_card_at_index(current_hand_size-1));
          std::string suit = c.get_spanish_suit();
          std::string rank = c.get_spanish_rank();
 
@@ -312,4 +311,9 @@ int Card::get_rank() const {
       }
 
       return "";
+   }
+
+   // gets the value of the currect hand;
+   double Player::get_hand_value() const{
+      return hand.handNumber();
    }
