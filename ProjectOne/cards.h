@@ -19,19 +19,19 @@ enum suit_t { OROS, COPAS, ESPADAS, BASTOS };
 enum rank_t { AS, DOS, TRES, CUATRO, CINCO, SEIS, SIETE, SOTA = 9, CABALLO = 10, REY = 11 };
 
 class Card {
-public:
-	// Constructor assigns random rank & suit to card.
-	Card();
+	public:
+		// Constructor assigns random rank & suit to card.
+		Card();
 
-	// Accessors 
-	std::string get_spanish_suit() const;
-	std::string get_spanish_rank() const;
-	std::string get_english_suit() const;
-	std::string get_english_rank() const;
+		// Accessors 
+		std::string get_spanish_suit() const;
+		std::string get_spanish_rank() const;
+		std::string get_english_suit() const;
+		std::string get_english_rank() const;
 
-	// Converts card rank to number.
-	// The possible returns are: 1, 2, 3, 4, 5, 6, 7, 10, 11 and 12
-	int get_rank() const;
+		// Converts card rank to number.
+		// The possible returns are: 1, 2, 3, 4, 5, 6, 7, 10, 11 and 12
+		int get_rank() const;
 
 	// Returns the value of the corresponding rank
 	// The possible returns are 1, 2, 3, 4, 5, 6, 7, 0.5, 0.5, 0.5
