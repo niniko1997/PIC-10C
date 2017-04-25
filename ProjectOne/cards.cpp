@@ -113,16 +113,16 @@ std::string Card::get_english_suit() const {
 	std::string suitName;
 	switch (suit) {
 	case OROS:
-		suitName = "golds";
+		suitName = "Golds";
 		break;
 	case COPAS:
-		suitName = "cups";
+		suitName = "Cups";
 		break;
 	case ESPADAS:
-		suitName = "swords";
+		suitName = "Swords";
 		break;
 	case BASTOS:
-		suitName = "clubs";
+		suitName = "Clubs";
 		break;
 	default: break;
 	}
@@ -310,17 +310,23 @@ void Player::add_card(Card* c) {
 	hand.add_card(c);
 }
 
-std::string Player::getCurrentCard() {
-	int current_hand_size = hand.get_hand_size();
-	if (current_hand_size>0) {
-		Card c = *(hand.get_card_at_index(current_hand_size - 1));
-		std::string suit = c.get_spanish_suit();
-		std::string rank = c.get_spanish_rank();
+std::string Player::getCards() {
+	std::string stringOfCards = "";
 
-		return "Suit: " + suit + " Rank: " + rank;
+	int current_hand_size = hand.get_hand_size();
+
+	for (int i = 0; i < current_hand_size; i++) {
+		Card c = *(hand.get_card_at_index(i));
+		stringOfCards = stringOfCards + "\t" + c.get_spanish_rank() + " de " + c.get_spanish_suit() + " (" + c.get_english_rank() + " of " + c.get_english_suit() + ").";
+		stringOfCards = stringOfCards + "\n";
 	}
 
-	return "";
+	return stringOfCards;
+}
+
+std::string Player::getLastCard() {
+	Card c = *(hand.get_card_at_index(hand.get_hand_size() - 1));
+	return "\t" + c.get_spanish_rank() + " de " + c.get_spanish_suit() + " (" + c.get_english_rank() + " of " + c.get_english_suit() + ").";
 }
 
 // gets the value of the currect hand;
