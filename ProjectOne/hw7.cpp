@@ -26,39 +26,23 @@ int main() {
 	int dealerLoss = 0;
 
 	// Starting the game with no bets
-	std::cout << "\nBienvenidos to Siete y Medio. You currently have " << PLAYER_MONEY << " pesos. \n";
+	std::cout << "\nBienvenidos a Siete y Medio.\n";
 	int betMoney = 0;
-	std::string bet = "";
 	char ans;
-	bool isInt = false;
 
 	do {
 
-		bet = "";
 		betMoney = 0;
+		//Display how much user currently has
+		std::cout<<"You currently have $" << PLAYER_MONEY <<".";
 
 		//Prompt user to input how much he would like to bet and read the value 
-		std::cout << "Please enter how much you would like to bet (enter an int between 0 and " << PLAYER_MONEY << ") \n";
-		getline(std::cin, bet);
-		std::cin.ignore(10000, '\n');
-		std::cout << "Bet: " << bet;
-		
-		//Convert string input into an integer
-		for (int i = 0; i < bet.length(); i++) {
-			if (!bet.empty() || (isdigit(bet[i]) && (bet[i] != '-') && (bet[i] != '+'))) {
-				isInt = true;
-			}
-			else {
-				isInt = false;
-			}
-		}
-
-		if (isInt) {
-			betMoney = atoi(bet.c_str());
-		}
+		std::cout << "\t Enter Bet: ";
+		std::cin >> betMoney;
+		bool wentOnce = false;
 
 		// check if input was valid, i.e. the player didn't bet over the given amount
-		if (betMoney <= PLAYER_MONEY && betMoney > 0 && isInt) {
+		if (betMoney <= PLAYER_MONEY && betMoney > 0) {
 
 			Player Dealer(MAX_DEALER_LOSS-dealerLoss);
 			Player firstPlayer(PLAYER_MONEY);
@@ -68,59 +52,80 @@ int main() {
 
 				firstPlayer.add_card(new Card());
 
-				std::cout << "Your card is " << firstPlayer.getCurrentCard() << "\n";
-				std::cout << "The current value of your cards is: " << firstPlayer.get_hand_value() << "\n";
+				if (wentOnce) {
+					std::cout << "\nNew Card: \n";
+					std::cout << firstPlayer.getLastCard() <<"\n";
+				}
+
+				std::cout << "Your cards: \n";
+				std::cout << firstPlayer.getCards();
+
+				std::cout << "Your total is: " << firstPlayer.get_hand_value() << ". ";
 
 				if (firstPlayer.get_hand_value() < 7.5) {
-					std::cout << "Would you like to draw another card? (y/n) \n";
+					std::cout << "Do you want another card? (y/n)";
 					std::cin >> ans;
-				}
-				else {
-					std::cout << "You cannot draw any more cards, because your total exceeds 7 1/2. \n";
+				}else {
+					std::cout << "\nYou cannot draw any more cards, because your total exceeds 7 1/2. \n";
 					ans = 'n';
 				}
 
+				wentOnce = true;
 			} while (ans == 'y');
 
 			std::cout << "\n";
+			wentOnce = false;
 
 			// have the dealer draw cards until his card value goes over 5.5
 			do {
 				Dealer.add_card(new Card());
-				std::cout << "The Dealer's Card is " << Dealer.getCurrentCard() << "\n";
-				std::cout << "The current value of the Dealer's cards is: " << Dealer.get_hand_value() << "\n";
+
+				if (wentOnce) {
+					std::cout << "New Card: \n";
+					std::cout << Dealer.getLastCard() << "\n";
+				}
+
+				std::cout << "Dealer's cards: \n";
+				std::cout << Dealer.getCards();
+
+				std::cout << "The dealer's total is: " << Dealer.get_hand_value() << "\n";
+				wentOnce = true;
 			} while (Dealer.get_hand_value() < 5.5);
 
 
 			if (Dealer.get_hand_value() > 7.5 && firstPlayer.get_hand_value() <= 7.5) {
-				std::cout << "You win " << betMoney << " pesos! \n";
+				std::cout << "You win $" << betMoney << ".\n";
 				dealerLoss = dealerLoss + betMoney;
 				PLAYER_MONEY = PLAYER_MONEY + betMoney;
 			}
 			else if (firstPlayer.get_hand_value() > 7.5 && Dealer.get_hand_value() <= 7.5) {
-				std::cout << "You lose " << betMoney << " pesos! \n";
+				std::cout << "You lose $" << betMoney << ".\n";
 				PLAYER_MONEY = PLAYER_MONEY - betMoney;
 			}
 			else if (Dealer.get_hand_value() > 7.5 && firstPlayer.get_hand_value() > 7.5) {
-				std::cout << "You lose " << betMoney << " pesos! \n";
+				std::cout << "You lose $" << betMoney << ".\n";
 				PLAYER_MONEY = PLAYER_MONEY - betMoney;
 			}
 			else if (7.5 - firstPlayer.get_hand_value() < 7.5 - Dealer.get_hand_value()) {
-				std::cout << "You win " << betMoney << " pesos! \n";
+				std::cout << "You win $" << betMoney << ".\n";
 				PLAYER_MONEY = PLAYER_MONEY + betMoney;
 				dealerLoss = dealerLoss + betMoney;
 			}
 			else if (7.5 - firstPlayer.get_hand_value() > 7.5 - Dealer.get_hand_value()) {
-				std::cout << "You lose " << betMoney << " pesos! \n";
+				std::cout << "You lose $" << betMoney << ".\n";
 				PLAYER_MONEY = PLAYER_MONEY - betMoney;
 			}
 			else if (7.5 - firstPlayer.get_hand_value() == 7.5 - Dealer.get_hand_value()) {
 				std::cout << "It's a tie. There is no exchange of money. \n";
 			}
 
-			std::cout << "\nNew Round: \n";
+			std::cout << "\n\n";
 		}else {
-			std::cout << "Your input was invalid \n";
+			std::cout << "Your input was invalid. \n";
 		}
-     }while (PLAYER_MONEY >= 0 || dealerLoss <= MAX_DEALER_LOSS);
+
+		wentOnce = false;
+     }while (PLAYER_MONEY > 0 && dealerLoss <= MAX_DEALER_LOSS);
+
+	 std::cout << "\n THE GAME IS OVER. THANK YOU FOR PLAYING.\n";
 }// end main
