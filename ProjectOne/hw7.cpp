@@ -102,7 +102,7 @@ int main() {
 				std::cout << "Dealer's cards: \n";
 				std::cout << Dealer.getCards();
 
-				std::cout << "The dealer's total is: " << Dealer.get_hand_value() << "\n";
+				std::cout << "The dealer's total is: " << Dealer.get_hand_value() << ".\n";
 				wentOnce = true;
 			} while (Dealer.get_hand_value() < 5.5);
 
