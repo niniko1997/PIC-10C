@@ -21,6 +21,11 @@ const int NUM_OF_SUITS = 4;
 
 int main() {
 	
+	srand(time(0));
+	ofstream fileStream;
+	fileStream.open("GameLog.txt");
+	int gameNumber = 0;	    
+
 
 	// how much money the dealer has lost thus far
 	int dealerLoss = 0;
@@ -33,6 +38,7 @@ int main() {
 	do {
 
 		betMoney = 0;
+
 		//Display how much user currently has
 		std::cout<<"You currently have $" << PLAYER_MONEY <<".";
 
@@ -43,6 +49,10 @@ int main() {
 
 		// check if input was valid, i.e. the player didn't bet over the given amount
 		if (betMoney <= PLAYER_MONEY && betMoney > 0) {
+
+			fileStream << "----------------------------------------------\n\n";
+			fileStream << "Game Number: " << gameNumber << "\t Money Left: " << PLAYER_MONEY << "\n";
+			fileStream << "Bet: " << betMoney << "\n\n"; 
 
 			Player Dealer(MAX_DEALER_LOSS-dealerLoss);
 			Player firstPlayer(PLAYER_MONEY);
@@ -73,6 +83,10 @@ int main() {
 				wentOnce = true;
 			} while (ans == 'y');
 
+			fileStream << "Your cards: \n";
+			fileStream << firstPlayer.getCards();
+			fileStream << "Your total: " << firstPlayer.get_hand_value() << ". \n\n";
+
 			std::cout << "\n";
 			wentOnce = false;
 
@@ -91,6 +105,10 @@ int main() {
 				std::cout << "The dealer's total is: " << Dealer.get_hand_value() << "\n";
 				wentOnce = true;
 			} while (Dealer.get_hand_value() < 5.5);
+
+			fileStream << "Dealer's cards: \n";
+			fileStream << Dealer.getCards();
+			fileStream << "Dealer's total: " << Dealer.get_hand_value() << ". \n\n";
 
 
 			if (Dealer.get_hand_value() > 7.5 && firstPlayer.get_hand_value() <= 7.5) {
@@ -125,6 +143,7 @@ int main() {
 		}
 
 		wentOnce = false;
+		gameNumber = gameNumber + 1 ;
      }while (PLAYER_MONEY > 0 && dealerLoss <= MAX_DEALER_LOSS);
 
 	 std::cout << "\n THE GAME IS OVER. THANK YOU FOR PLAYING.\n";
