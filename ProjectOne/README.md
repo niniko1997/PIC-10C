@@ -1,17 +1,13 @@
-# Project #1
+# Project One:
 
-The assignment is to write a single-player version of the card game known as 'siete y medio' (seven and a half).
-The goal of the game is to get cards whose total value comes the closest to 7.5 without going over it. Getting a card total over 7.5 is called "busting". 
+The assignment is to write a single-player version of the card game known as 'Siete y Medio' (seven and a half).
+The goal of the game is to get cards whose total value comes the closest to 7.5 without going over it. 
 
-When a player makes a bet against the dealer. There are 4 possible outcomes:
+Copyright: Public domain.
+Filename:  cards.h, cards.cpp, hw7.cpp
+Purpose:   The purpose is to practice working with github and version control while praciticing C++ skills such as reference and pointers. 
+Contact:   Nino Migineishvili <m.nino97@gmail.com>.
+Mod history:   2017-04-30
 
-The player comes closer to 7.5 than the dealer or the dealer busts but the player did not bust. 
-In this case the player wins the round and the player's money increases by the amount that was bet.
-The dealer comes closer to 7.5 than the player, or the player busts.
-In this case the player loses the round and the player's money decreases by the amount that was bet.
-Both, the player and dealer bust.
-In this case the player loses the round and the player's money decreases by the amount that was bet. 
-This is called house advantage. 
-Both the player and the dealer have the same total and  they do not bust.
-In this case a tie is declared and no money is exchanged. 
+When playing the game, the program generates a file called "gameFile.txt" and writes relevant game information into that file. For the purposes of displaying test data, I will use to output of that file to show how the program is suposed to work. 
 
