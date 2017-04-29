@@ -5,7 +5,7 @@ The goal of the game is to get cards whose total value comes the closest to 7.5 
 
 Copyright: Public domain.
 Filename:  cards.h, cards.cpp, hw7.cpp
-Purpose:   The purpose is to practice working with github and version control while praciticing C++ skills such as reference and pointers. 
+Purpose:   The purpose is to practice working with github and version control while praciticing C++ skills such as reference and pointers.
 Contact:   Nino Migineishvili <m.nino97@gmail.com>.
 Mod history:   2017-04-30
 
