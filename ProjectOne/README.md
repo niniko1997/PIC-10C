@@ -13,6 +13,7 @@ When playing the game, the program generates a file called "GameLog.txt" and wri
 
 ### Game 1: 
 
+```
 You currently have $50.  Enter Bet: 20
 Your cards:
         Tres de Copas (Three of Cups).
@@ -46,9 +47,11 @@ Dealer's cards:
 The dealer's total is: 11.
 
 You lose $20.
+```
 
 ### Game 2
 
+```
 You currently have $30.  Enter Bet: 15
 Your cards:
         Caballo de Bastos (Knight of Clubs).
@@ -89,9 +92,10 @@ Dealer's cards:
 The dealer's total is: 12.
 
 You win $15.
-
+```
 ### Game 3
 
+```
 You currently have $45.  Enter Bet: 15
 Your cards:
         Caballo de Espadas (Knight of Swords).
@@ -124,9 +128,10 @@ Dealer's cards:
 The dealer's total is: 7.5.
 
 You lose $15.
-
+```
 ### Game 4
 
+```
 You currently have $30.  Enter Bet: 20
 Your cards:
         Sota de Espadas (Jack of Swords).
@@ -151,9 +156,11 @@ Dealer's cards:
 The dealer's total is: 10.
 
 You win $20.
+```
 
 ### Game 5
 
+```
 You currently have $50.  Enter Bet: 20
 Your cards:
         Siete de Oros (Seven of Golds).
@@ -190,9 +197,11 @@ Dealer's cards:
 The dealer's total is: 6.
 
 You win $20.
+```
 
 ### Game 6
 
+```
 You currently have $70.  Enter Bet: 50
 Your cards:
         As de Espadas (Ace of Swords).
@@ -234,9 +243,11 @@ Dealer's cards:
 The dealer's total is: 8.
 
 You lose $50.
+```
 
 ### Game 7
 
+```
 You currently have $20.  Enter Bet: 10
 Your cards:
         Dos de Espadas (Two of Swords).
@@ -269,9 +280,11 @@ Dealer's cards:
 The dealer's total is: 7.5.
 
 You lose $10.
+```
 
 ## Game 8
 
+```
 You currently have $10.  Enter Bet: 10
 Your cards:
         Tres de Espadas (Three of Swords).
@@ -300,4 +313,4 @@ You lose $10.
 
 
 THE GAME IS OVER. THANK YOU FOR PLAYING.
-
+```
