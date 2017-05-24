@@ -1,29 +1,45 @@
-#ifndef grade_calculator.h
-#define grade_calculator_h
+#ifndef GRADE_CALCULATOR_H
+#define GRADE_CALCULATOR_H
 
 #include <QMainWindow>
 
 namespace Ui {
     class grade_calculator;
-
 }
 
-class grade_calculator : public QMainWindow {
+class grade_calculator : public QMainWindow{
     Q_OBJECT
 
     public:
-        grade_calculator();
+        explicit grade_calculator(QWidget *parent = 0);
         ~grade_calculator();
 
+        double calculatePIC10C();
+        double calculateMath132();
+        double calculateMath180();
+        double calculatePoliSci30();
+        double calculateAA10();
+
     public slots:
-        signals:
+
+    signals:
 
     private slots:
+        void on_radioButton_Clicked();
+        void on_radioButton2_Clicked();
+        void on_radioButton3_Clicked();
+        void on_radioButton4_Clicked();
+        void on_radioButton5_Clicked();
+        void on_submit_Clicked();
 
     private:
-        Ui::MainWindow * window;
+     Ui::grade_calculator *ui;
+     bool gradingPIC10C;
+     bool gradingMath132;
+     bool gradingMath180;
+     bool gradingPoliSci30;
+     bool gradingAA10;
 
 };
 
-#endif 
-// grade_calculator header end
+#endif // GRADE_CALCULATOR_H
