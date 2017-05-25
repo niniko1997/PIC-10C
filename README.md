@@ -6,4 +6,4 @@ The first project was to program a card game known as "Siete y Medio". The goal 
 
 ## Project Two: 
 
-The foald of the second project is to design and implement a Qt Graphical User Interface that computes the grade of a student given a set of homework and exam scores. 
+The goal of the second project is to design and implement a Qt Graphical User Interface that computes the grade of a student given a set of homework and exam scores. 
