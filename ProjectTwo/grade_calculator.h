@@ -31,6 +31,7 @@ class grade_calculator : public QMainWindow{
         void on_radioButton4_Clicked();
         void on_radioButton5_Clicked();
         void on_submit_Clicked();
+        void on_reset_Clicked();
 
     private:
      Ui::grade_calculator *ui;
