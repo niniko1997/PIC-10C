@@ -12,6 +12,7 @@ grade_calculator::grade_calculator(QWidget *parent)
 
     // all the connects
     QObject::connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(on_submit_Clicked()));
+    QObject::connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(on_reset_Clicked()));
     QObject::connect(ui->radioButton, SIGNAL(clicked()), this, SLOT(on_radioButton_Clicked()));
     QObject::connect(ui->radioButton_2, SIGNAL(clicked()), this, SLOT(on_radioButton2_Clicked()));
     QObject::connect(ui->radioButton_3, SIGNAL(clicked()), this, SLOT(on_radioButton3_Clicked()));
@@ -297,4 +298,39 @@ void grade_calculator::on_submit_Clicked(){
     } else {
        ui->lineEdit->setText(QString::number(grade) + "%");
     }
+}
+
+// resets all input fields to 0
+void grade_calculator::on_reset_Clicked(){
+    // set spin box max to 100
+    ui->hwOneScore->setValue(0);
+    ui->hwTwoScore->setValue(0);
+    ui->hwThreeScore->setValue(0);
+    ui->hwFourScore->setValue(0);
+    ui->hwFiveScore->setValue(0);
+    ui->hwSixScore->setValue(0);
+    ui->hwSevenScore->setValue(0);
+    ui->hwEightScore->setValue(0);
+    ui->hwNineScore->setValue(0);
+    ui->hwTenScore->setValue(0);
+    ui->hwOneScoreTotal->setValue(0);
+    ui->hwTwoScoreTotal->setValue(0);
+    ui->hwThreeScoreTotal->setValue(0);
+    ui->hwFourScoreTotal->setValue(0);
+    ui->hwFiveScoreTotal->setValue(0);
+    ui->hwSixScoreTotal->setValue(0);
+    ui->hwSevenScoreTotal->setValue(0);
+    ui->hwEightScoreTotal->setValue(0);
+    ui->hwNineScoreTotal->setValue(0);
+    ui->hwTenScoreTotal->setValue(0);
+    ui->midtermOneScore->setValue(0);
+    ui->midtermOneScoreTotal->setValue(0);
+    ui->midtermTwoScore->setValue(0);
+    ui->midtermTwoScoreTotal->setValue(0);
+    ui->finalScore->setValue(0);
+    ui->finalScoreTotal->setValue(0);
+    ui->finalProjectScore->setValue(0);
+    ui->finalProjectScoreTotal->setValue(0);
+
+    ui->lineEdit->setText("0.0%");
 }
