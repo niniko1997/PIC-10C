@@ -10,13 +10,43 @@ grade_calculator::grade_calculator(QWidget *parent)
     :QMainWindow(parent), ui(new Ui::grade_calculator), gradingPIC10C(false), gradingMath132(false), gradingMath180(false), gradingPoliSci30(false), gradingAA10(false){
     ui->setupUi(this);
 
-
+    // all the connects
     QObject::connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(on_submit_Clicked()));
     QObject::connect(ui->radioButton, SIGNAL(clicked()), this, SLOT(on_radioButton_Clicked()));
     QObject::connect(ui->radioButton_2, SIGNAL(clicked()), this, SLOT(on_radioButton2_Clicked()));
     QObject::connect(ui->radioButton_3, SIGNAL(clicked()), this, SLOT(on_radioButton3_Clicked()));
     QObject::connect(ui->radioButton_4, SIGNAL(clicked()), this, SLOT(on_radioButton4_Clicked()));
     QObject::connect(ui->radioButton_5, SIGNAL(clicked()), this, SLOT(on_radioButton5_Clicked()));
+
+    // set spin box max to 100
+    ui->hwOneScore->setMaximum(100);
+    ui->hwTwoScore->setMaximum(100);
+    ui->hwThreeScore->setMaximum(100);
+    ui->hwFourScore->setMaximum(100);
+    ui->hwFiveScore->setMaximum(100);
+    ui->hwSixScore->setMaximum(100);
+    ui->hwSevenScore->setMaximum(100);
+    ui->hwEightScore->setMaximum(100);
+    ui->hwNineScore->setMaximum(100);
+    ui->hwTenScore->setMaximum(100);
+    ui->hwOneScoreTotal->setMaximum(100);
+    ui->hwTwoScoreTotal->setMaximum(100);
+    ui->hwThreeScoreTotal->setMaximum(100);
+    ui->hwFourScoreTotal->setMaximum(100);
+    ui->hwFiveScoreTotal->setMaximum(100);
+    ui->hwSixScoreTotal->setMaximum(100);
+    ui->hwSevenScoreTotal->setMaximum(100);
+    ui->hwEightScoreTotal->setMaximum(100);
+    ui->hwNineScoreTotal->setMaximum(100);
+    ui->hwTenScoreTotal->setMaximum(100);
+    ui->midtermOneScore->setMaximum(100);
+    ui->midtermOneScoreTotal->setMaximum(100);
+    ui->midtermTwoScore->setMaximum(100);
+    ui->midtermTwoScoreTotal->setMaximum(100);
+    ui->finalScore->setMaximum(100);
+    ui->finalScoreTotal->setMaximum(100);
+    ui->finalProjectScore->setMaximum(100);
+    ui->finalProjectScoreTotal->setMaximum(100);
 }
 
 // destructor
@@ -240,7 +270,7 @@ double grade_calculator::calculateAA10(){
 // checks which scheme was chosen and calls the appropriate calculate function
 // outputs total score into the line edit field
 void grade_calculator::on_submit_Clicked(){
-    double grade = 0;
+    double grade = -2;
 
     // checks which schema the user has selected and calculates the score based on the input
     if(gradingPIC10C){
@@ -260,8 +290,10 @@ void grade_calculator::on_submit_Clicked(){
     // checks if the grades have invalid input
     // if so, notifies user
     // otherwise displays grade
-    if(grade == -1){
+    if(grade == -100){
        ui->lineEdit->setText("Invalid Input");
+    } else if (grade == -200){
+         ui->lineEdit->setText("Choose a Class");
     } else {
        ui->lineEdit->setText(QString::number(grade) + "%");
     }
