@@ -44,28 +44,32 @@ class RingQueue{
 
             public:
                 reference operator*() {
-                    return (parent.begin_index + offset) % MAX_SIZE.
+                    return parent->buffer[(parent->begin_index + offset) % MAX_SIZE];
                 }
 
                 iterator& operator++(){
                    offset++;
+                 }
+
+                   return *this;
                 }
 
                 iterator operator++( int unused ){
-                    offset = offset + unused;
+                    offset++;
+                    return *this;
                 }
 
                 bool operator==( const iterator& rhs ) const {
-                    if(rhs.parent == this.parent && rhs.offset == this.offset){
+                    if(rhs.parent == this->parent && rhs.offset == this->offset){
                         return true;
                     } 
                     return false;
                 }
 
                 bool operator!=( const iterator& rhs ) const {
-                    if(rhs.parent != this.parent){
+                    if(rhs.parent != this->parent){
                         return true;
-                    } else if(rhs.offset != this.offset) {
+                    } else if(rhs.offset != this->offset) {
                         return true;
                     }
 
@@ -133,13 +137,12 @@ class RingQueue{
 
                 ring_size++;
            }
-
         }
 
         void pop_front(){
 
             ring_size--; 
-            
+
             if(begin_index == MAX_SIZE - 1)
                     begin_index = 0;
                 else 
@@ -148,18 +151,18 @@ class RingQueue{
 
         // Functions that return iterators
         iterator begin() { 
-            // Replace the line(s) below with your code.
-            return iterator(this,0); 
+            return iterator(this, 0); 
         }
+
         iterator end() {
-            // Replace the line(s) below with your code.
-            return iterator(this,0);
+            return iterator(this, ring_size -1);
         }
 
         // Miscellaneous functions
         size_t size() const {
-            // Replace the line(s) below with your code.
-            return 0;
+            for(auto it = this->begin(); it->begin() != it->end(); it++){
+
+            }
         }
 
         // Debugging functions
@@ -175,18 +178,21 @@ class RingQueue{
 
 int main(){
     RingQueue<int,7> rq;
+
     rq.dump_queue();
 
     for ( int i = 0 ; i < 8 ; ++i )
         rq.push_back(i+1);
 
     rq.dump_queue();
+
     rq.pop_front();
 
     std::cout << "Queue via size: \n";
 
     // RingQueue<int,7>::iterator it = rq.begin() ; 
-    auto it = rq.begin() ; 
+    auto it = rq.begin() ;
+
     for ( size_t i = 0 ; i < rq.size() ; ++i ) {
         std::cout << "Value: " << *it << ", address: " << &(*it) << '\n';
         ++it;
