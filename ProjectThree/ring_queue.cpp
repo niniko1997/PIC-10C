@@ -1,20 +1,8 @@
-// Description: An incomplete implementation of iterators for a
-//              RingQueue class.
-//
-// Notes: The project DOES compile but there is no meaningful 
-//              output
-//
-// Your job: To complete this set of classes so that the output
-//              produced by 'main' (below), matches the sample
-//              file provided at the end of this file.
-
-
 #include <iostream>
 
 // Forward declaration
 template <typename ItemType, int MAX_SIZE>
 class RingQueue;
-
 
 
 template <typename ItemType, int MAX_SIZE>
@@ -25,14 +13,11 @@ class RingQueue{
     // one of the special categories of iterators (e.g., input, output,
     // forward, etc.).
     public: 
-        class iterator;
-
-
+    class iterator;
 
     // Aliases. 
     typedef ItemType* pointer;
     typedef ItemType& reference;
-
 
 
     // Definition of RingQueue<ItemType,MAX_SIZE>::iterator
@@ -47,7 +32,7 @@ class RingQueue{
                 // queue.
                 int offset;
 
-            private:  // Private constructor???
+            private:  
                 iterator(RingQueue* _parent, int _offset = 0 )
                   : parent(_parent), offset(_offset) { }
 
@@ -59,52 +44,35 @@ class RingQueue{
 
             public:
                 reference operator*() {
-                    // Replace the line(s) below with your code.
-                    return parent->buffer[0] ;  
+                    return (parent.begin_index + offset) % MAX_SIZE.
                 }
 
                 iterator& operator++(){
-                    // Replace the line(s) below with your code.
-                    return *this;
+                   offset++;
                 }
 
                 iterator operator++( int unused ){
-                    // Replace the line(s) below with your code.
-                    return *this;
+                    offset = offset + unused;
                 }
 
                 bool operator==( const iterator& rhs ) const {
-                    // Replace the line(s) below with your code.
-                    return true;
+                    if(rhs.parent == this.parent && rhs.offset == this.offset){
+                        return true;
+                    } 
+                    return false;
                 }
 
                 bool operator!=( const iterator& rhs ) const {
-                    // Replace the line(s) below with your code.
-                    return true;
+                    if(rhs.parent != this.parent){
+                        return true;
+                    } else if(rhs.offset != this.offset) {
+                        return true;
+                    }
+
+                    return false;
                 }
 
         };
-
-
-
-        /**
-        class const_iterator{
-            private:
-                RingQueue* parent;
-                int offset;
-
-            private:
-                // Only RingQueue objects can create const_iterators...
-                const_iterator() ;
-
-            public:
-                // ... however, const_iterators can be 'copied'.
-                const_iterator( const const_iterator& ) ;
-
-            friend class RingQueue<ItemType,MAX_SIZE>;
-        };
-        */
-
 
 
     // Friendship goes both ways here.
@@ -131,8 +99,7 @@ class RingQueue{
         // A helper function that computes the index of 'the end'
         // of the RingQueue
         int end_index() const {
-            // Replace the line(s) below with your code.
-            return begin_index;
+            return (begin_index+ring_size) % MAX_SIZE;
         }
 
 
@@ -143,32 +110,40 @@ class RingQueue{
 
         // Accessors. Note: 'back()' is not considered part of the array.
         ItemType front() const { 
-            if ( ring_size == 0 ) std::cerr<< "Warning: Empty ring!\n" ;
-            // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-            // Feel free to throw instead...
-            
-            
-            // Replace the line(s) below with your code.
-            return buffer[0];
+            if ( ring_size == 0 ) 
+                std::cerr<< "Warning: Empty ring!\n" ;
+            return buffer[begin_index];
         }
+
         ItemType back() const {  
             if ( ring_size == 0 ) std::cerr<< "Warning: Empty ring!\n" ;
-            // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-            // Feel free to throw instead...
-            
-            
-            // Replace the line(s) below with your code.
-            return buffer[0]; 
+            return buffer[end_index()]; 
         }
-
-
 
         // Mutators
         void push_back( const ItemType& value ){
-            return;
+           buffer[end_index()] = value;
+
+           if(ring_size == MAX_SIZE){
+               if(begin_index == MAX_SIZE - 1)
+                    begin_index = 0;
+                else 
+                    begin_index++;
+           } else{
+
+                ring_size++;
+           }
+
         }
+
         void pop_front(){
-            return;
+
+            ring_size--; 
+            
+            if(begin_index == MAX_SIZE - 1)
+                    begin_index = 0;
+                else 
+                    begin_index++;
         }
 
         // Functions that return iterators
