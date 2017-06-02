@@ -6,7 +6,7 @@ class RingQueue;
 
 
 template <typename ItemType, int MAX_SIZE>
-class RingQueue{
+class RingQueue {
     
     // Nested Forward declaration of RingQueue<ItemType,MAX_SIZE>::iterator
     // This is needed if one plans to turn this home-made iterator into
@@ -18,7 +18,6 @@ class RingQueue{
     // Aliases. 
     typedef ItemType* pointer;
     typedef ItemType& reference;
-
 
     // Definition of RingQueue<ItemType,MAX_SIZE>::iterator
     public:
@@ -35,36 +34,32 @@ class RingQueue{
             private:  
                 iterator(RingQueue* _parent, int _offset = 0 )
                   : parent(_parent), offset(_offset) { }
-
                 
             // It is quite common for Containers and their iterators
             // to be friends. After all, they should work closely together.
             friend class RingQueue<ItemType,MAX_SIZE>;
 
-
             public:
                 reference operator*() {
                     return parent->buffer[(parent->begin_index + offset) % MAX_SIZE];
-                }
+                }// end operator*
 
                 iterator& operator++(){
                    offset++;
-                 }
-
                    return *this;
-                }
+                }// end operator++
 
                 iterator operator++( int unused ){
                     offset++;
                     return *this;
-                }
+                }// end operator++
 
                 bool operator==( const iterator& rhs ) const {
                     if(rhs.parent == this->parent && rhs.offset == this->offset){
                         return true;
                     } 
                     return false;
-                }
+                } // end operator ==
 
                 bool operator!=( const iterator& rhs ) const {
                     if(rhs.parent != this->parent){
@@ -74,16 +69,13 @@ class RingQueue{
                     }
 
                     return false;
-                }
+                }// end operator !=
 
-        };
-
+        }; // end class iterator
 
     // Friendship goes both ways here.
     friend class iterator;
     // friend class const_iterator;  // not implemented... yet.
-
-
 
     private:
         // A fixed-size static array with constant capacity that represents 
@@ -98,15 +90,11 @@ class RingQueue{
         // its capacity. 
         int ring_size;
 
-
-
         // A helper function that computes the index of 'the end'
         // of the RingQueue
         int end_index() const {
             return (begin_index+ring_size) % MAX_SIZE;
-        }
-
-
+        }// end end_index()
 
     public: 
         // Constructor
@@ -117,12 +105,12 @@ class RingQueue{
             if ( ring_size == 0 ) 
                 std::cerr<< "Warning: Empty ring!\n" ;
             return buffer[begin_index];
-        }
+        } // end front()
 
         ItemType back() const {  
             if ( ring_size == 0 ) std::cerr<< "Warning: Empty ring!\n" ;
             return buffer[end_index()]; 
-        }
+        }// end back
 
         // Mutators
         void push_back( const ItemType& value ){
@@ -137,7 +125,7 @@ class RingQueue{
 
                 ring_size++;
            }
-        }
+        }// end push_back
 
         void pop_front(){
 
@@ -147,21 +135,21 @@ class RingQueue{
                     begin_index = 0;
                 else 
                     begin_index++;
-        }
+        } // end pop_front()
 
         // Functions that return iterators
         iterator begin() { 
             return iterator(this, 0); 
-        }
+        }// end begin()
 
         iterator end() {
             return iterator(this, ring_size);
-        }
+        }// end end()
 
         // Miscellaneous functions
         size_t size() const {
             return ring_size;
-        }
+        }// end size()
 
         // Debugging functions
         void dump_queue() const {
@@ -170,7 +158,7 @@ class RingQueue{
                 std::cout << "Val: " << buffer[i] << ", at: " << buffer+i << '\n';
             std::cout << '\n';
             return;
-        }
+        } // end dump_queue
 
 };
 
@@ -208,7 +196,7 @@ int main(){
     rq.dump_queue();
 
     return 0;
-}
+}// end main
 
 
 
@@ -226,7 +214,6 @@ int main(){
         is equal to the number reported by
         'size_of( int )'.
     +++++++++++++++++++++++++++++++++++++++++++++++
-
         Raw queue...
         Val: 2, at: 0x7ffcdeeaab40
         Val: 0, at: 0x7ffcdeeaab44
@@ -235,7 +222,6 @@ int main(){
         Val: 0, at: 0x7ffcdeeaab50
         Val: 0, at: 0x7ffcdeeaab54
         Val: 0, at: 0x7ffcdeeaab58
-
         Raw queue...
         Val: 8, at: 0x7ffcdeeaab40
         Val: 2, at: 0x7ffcdeeaab44
@@ -244,7 +230,6 @@ int main(){
         Val: 5, at: 0x7ffcdeeaab50
         Val: 6, at: 0x7ffcdeeaab54
         Val: 7, at: 0x7ffcdeeaab58
-
         Queue via size: 
         Value: 3, address: 0x7ffcdeeaab48
         Value: 4, address: 0x7ffcdeeaab4c
@@ -252,7 +237,6 @@ int main(){
         Value: 6, address: 0x7ffcdeeaab54
         Value: 7, address: 0x7ffcdeeaab58
         Value: 8, address: 0x7ffcdeeaab40
-
         Queue via iterators: 
         Value: 3, address: 0x7ffcdeeaab48
         Value: 4, address: 0x7ffcdeeaab4c
@@ -260,7 +244,6 @@ int main(){
         Value: 6, address: 0x7ffcdeeaab54
         Value: 7, address: 0x7ffcdeeaab58
         Value: 8, address: 0x7ffcdeeaab40
-
         Raw queue...
         Val: 8, at: 0x7ffcdeeaab40
         Val: 2, at: 0x7ffcdeeaab44
